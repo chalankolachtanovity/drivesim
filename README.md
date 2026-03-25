@@ -1,1 +1,773 @@
-# drivesim
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simulátor krízových situácií</title>
+  <style>
+    /* ===== LOVABLE FONTS ===== */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+    :root{
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+
+      --text:#0b0b12;
+      --muted:#6b7280;
+      --muted2:#8b8f9a;
+
+      --bg1:#f7f3ff;
+      --bg2:#ffffff;
+
+      --card:#ffffff;
+      --cardBorder:#ececf4;
+
+      --accentA:#6d28d9;
+      --accentB:#ec4899;
+      --accentC:#8b5cf6;
+
+      --shadow: 0 12px 32px rgba(17, 24, 39, 0.08);
+      --shadowSoft: 0 10px 22px rgba(17, 24, 39, 0.06);
+
+      --radius: 18px;
+      --radius2: 14px;
+
+      --container: 1040px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      font-family: var(--font-body);
+      color:var(--text);
+      background:#fff;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3, h4, h5, h6{
+      font-family: var(--font-heading);
+    }
+
+    a{color:inherit;text-decoration:none}
+    .container{
+      width:min(var(--container), calc(100% - 48px));
+      margin:0 auto;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero{
+      min-height: 88vh;
+      display:flex;
+      align-items:center;
+      background:
+        radial-gradient(1200px 600px at 50% 0%, rgba(139,92,246,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg1) 0%, #fbf9ff 35%, #ffffff 100%);
+    }
+    .hero-inner{
+      text-align:center;
+      padding: 90px 0 80px;
+    }
+    .eyebrow{
+      font-size: 12px;
+      letter-spacing: .18em;
+      color: rgba(17,24,39,.55);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .h1{
+      font-size: clamp(44px, 5vw, 64px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      margin: 0 0 18px;
+      font-weight: 800;
+    }
+    .grad-word{
+      background: linear-gradient(90deg, var(--accentA), var(--accentB));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+      font-weight: 900;
+    }
+    .hero-p{
+      max-width: 720px;
+      margin: 0 auto 30px;
+      color: rgba(17,24,39,.60);
+      font-size: 18px;
+      line-height: 1.55;
+      font-weight: 500;
+    }
+    .cta-row{
+      display:flex;
+      justify-content:center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn{
+      border-radius: 12px;
+      padding: 13px 22px;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid #e7e7f2;
+      background: #fff;
+      box-shadow: var(--shadowSoft);
+      cursor:pointer;
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: var(--shadow); }
+    .btn-primary{
+      border: 0;
+      color:#fff;
+      background: linear-gradient(90deg, rgba(109,40,217,.95), rgba(236,72,153,.92));
+      padding: 13px 26px;
+    }
+    .btn-secondary{
+      background: rgba(255,255,255,.70);
+    }
+
+    /* ---------- SECTION BASE ---------- */
+    section{
+      padding: 90px 0;
+      background:#fff;
+    }
+    .section-head{
+      text-align:center;
+      margin-bottom: 44px;
+    }
+    .kicker{
+      font-size: 12px;
+      letter-spacing: .18em;
+      color: rgba(236,72,153,.85);
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .h2{
+      font-size: clamp(34px, 3.2vw, 46px);
+      line-height: 1.1;
+      margin: 0 0 14px;
+      letter-spacing: -0.03em;
+      font-weight: 850;
+    }
+    .p{
+      margin: 0 auto;
+      max-width: 820px;
+      color: rgba(17,24,39,.60);
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 500;
+    }
+
+    /* ---------- PROBLEM CARDS (3) ---------- */
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 48px;
+    }
+    .card{
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      border-radius: var(--radius);
+      padding: 22px 22px;
+      box-shadow: 0 10px 26px rgba(17,24,39,.05);
+    }
+    .card h3{
+      margin:0 0 10px;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .card p{
+      margin:0;
+      color: rgba(17,24,39,.58);
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: 550;
+    }
+
+    /* ---------- SOLUTION (2x2 cards with icon) ---------- */
+    .grid-2x2{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      width: min(920px, 100%);
+      margin: 0 auto;
+      margin-top: 46px;
+    }
+    .feature{
+      display:flex;
+      gap: 14px;
+      align-items:flex-start;
+      padding: 22px;
+    }
+    .iconwrap{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(109,40,217,.95), rgba(236,72,153,.90));
+      display:grid;
+      place-items:center;
+      flex: 0 0 auto;
+      box-shadow: 0 10px 22px rgba(109,40,217,.14);
+    }
+    .iconwrap svg{ width: 22px; height: 22px; fill:#fff; opacity: .95; }
+    .feature b{
+      display:block;
+      font-size: 16px;
+      font-weight: 850;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
+    .feature span{
+      display:block;
+      color: rgba(17,24,39,.58);
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: 550;
+      max-width: 46ch;
+    }
+
+    /* ---------- TEAM LIST (stacked pills) ---------- */
+    .team-wrap{
+      width: min(720px, 100%);
+      margin: 0 auto;
+      margin-top: 40px;
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+    }
+    .pill{
+      background:#fff;
+      border: 1px solid var(--cardBorder);
+      border-radius: var(--radius);
+      padding: 18px 18px;
+      display:flex;
+      align-items:center;
+      gap: 14px;
+      box-shadow: 0 10px 26px rgba(17,24,39,.05);
+    }
+    .pill .miniicon{
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      background: rgba(139,92,246,.10);
+      display:grid;
+      place-items:center;
+      border: 1px solid rgba(139,92,246,.14);
+      flex: 0 0 auto;
+    }
+    .pill .miniicon svg{ width: 18px; height: 18px; fill: rgba(109,40,217,.95); }
+    .pill b{
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    /* ---------- FINAL CTA ---------- */
+    .final{
+      background:
+        radial-gradient(1100px 520px at 50% 20%, rgba(139,92,246,.12), transparent 60%),
+        linear-gradient(180deg, #ffffff 0%, var(--bg1) 42%, #f4efff 100%);
+      padding: 110px 0 120px;
+      text-align:center;
+    }
+    .final .h2{
+      max-width: 900px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .final .p{
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    /* ---------- modal (simple) ---------- */
+    .overlay{
+      position:fixed; inset:0;
+      display:none;
+      background: rgba(17,24,39,.45);
+      place-items:center;
+      padding: 18px;
+      z-index: 50;
+    }
+    .modal{
+      width: min(560px, 100%);
+      background: rgba(255,255,255,.95);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 22px;
+      box-shadow: 0 30px 90px rgba(17,24,39,.35);
+      overflow:hidden;
+    }
+    .modalhead{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(17,24,39,.10);
+      background:
+        radial-gradient(700px 240px at 20% 0%, rgba(109,40,217,.14), transparent 65%),
+        radial-gradient(700px 240px at 80% 0%, rgba(236,72,153,.12), transparent 65%),
+        rgba(255,255,255,.92);
+    }
+    .modalhead b{ font-weight: 850; letter-spacing:-.01em; }
+    .modalbody{ padding: 18px; }
+    .form{
+      display:grid;
+      gap: 12px;
+    }
+    label{
+      display:grid;
+      gap:6px;
+      font-size: 13px;
+      font-weight: 800;
+      color: rgba(17,24,39,.78);
+    }
+    input, textarea, select{
+      border: 1px solid rgba(17,24,39,.14);
+      border-radius: 14px;
+      padding: 12px 12px;
+      font: inherit;
+      outline:none;
+      background: #fff;
+    }
+    input:focus, textarea:focus, select:focus{
+      border-color: rgba(109,40,217,.45);
+      box-shadow: 0 0 0 4px rgba(109,40,217,.10);
+    }
+    textarea{ min-height: 110px; resize: vertical; }
+    .actions{
+      display:flex;
+      justify-content:flex-end;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 920px){
+      .grid-3{ grid-template-columns: 1fr; }
+      .grid-2x2{ grid-template-columns: 1fr; }
+      .hero{ min-height: 78vh; }
+      .hero-inner{ padding: 70px 0 60px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="eyebrow">SIMULÁTOR KRÍZOVÝCH SITUÁCIÍ</div>
+
+        <h1 class="h1">
+          Mladí vodiči nie sú<br />
+          pripravení na <span class="grad-word">krízové</span><br />
+          <span class="grad-word">situácie.</span>
+        </h1>
+
+        <p class="hero-p">
+          Budujeme simulátor, ktorý to zmení. Realistický systém simulácie krízových situácií pre
+          autoškoly — od šmyku po núdzové brzdenie.
+        </p>
+
+        <div class="cta-row">
+          <button class="btn btn-primary" id="openJoin1">Chcem byť súčasťou projektu</button>
+          <a class="btn btn-secondary" href="#problem">Zisti viac</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROBLEM -->
+  <section id="problem">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">PROBLÉM</div>
+        <h2 class="h2">Autoškoly neučia zvládať krízy</h2>
+        <p class="p">
+          Výučba v autoškolách sa zameriava na teóriu a základnú jazdu. Ale čo šmyk na mokrej vozovke?
+          Reakcia na náhlu prekážku? Brzdná dráha pri vysokej rýchlosti? Na tieto situácie sa študenti
+          takmer vôbec nepripravujú — a práve tam dochádza k najvážnejším nehodám.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Šmyk &amp; aquaplaning</h3>
+          <p>Žiadny bezpečný tréning na zvládanie straty kontroly.</p>
+        </div>
+        <div class="card">
+          <h3>Reakčný čas</h3>
+          <p>Študenti nepoznajú svoju reálnu reakčnú dobu.</p>
+        </div>
+        <div class="card">
+          <h3>Brzdná dráha</h3>
+          <p>Chýba praktická skúsenosť s núdzovým brzdením.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section id="solution" style="background: radial-gradient(900px 420px at 50% 0%, rgba(139,92,246,.08), transparent 60%), #fff;">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">NAŠE RIEŠENIE</div>
+        <h2 class="h2">Simulátor s reálnou fyzikou a merateľnými výsledkami</h2>
+      </div>
+
+      <div class="grid-2x2">
+        <div class="card feature">
+          <div class="iconwrap" aria-hidden="true">
+            <!-- speedometer -->
+            <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9c0 3.2 1.7 6 4.2 7.6.5.3 1.1.1 1.3-.4l.1-.2c.2-.4.1-.9-.3-1.2A6.98 6.98 0 0 1 5 12a7 7 0 1 1 14 0c0 2.2-1 4.2-2.6 5.5-.4.3-.5.8-.3 1.2l.1.2c.2.5.8.7 1.3.4A9 9 0 0 0 12 3zm.7 5.3-3.7 5.9c-.4.6 0 1.4.8 1.5l6.9.7c.8.1 1.2-1 .6-1.6l-3.9-3.6a.9.9 0 0 1-.2-1.1l1.2-2.2c.3-.6-.3-1.2-.9-.8z"/></svg>
+          </div>
+          <div>
+            <b>Realistická fyzika vozidla</b>
+            <span>Simulácia založená na skutočnom správaní áut v kritických situáciách.</span>
+          </div>
+        </div>
+
+        <div class="card feature">
+          <div class="iconwrap" aria-hidden="true">
+            <!-- hazard -->
+            <svg viewBox="0 0 24 24"><path d="M12 2 1 21h22L12 2zm0 5.8 6.2 11.2H5.8L12 7.8zm-1 3.2v4h2v-4h-2zm0 5.5v2h2v-2h-2z"/></svg>
+          </div>
+          <div>
+            <b>Krízové scenáre</b>
+            <span>Od šmyku cez zlyhanie bŕzd po náhlu prekážku na ceste.</span>
+          </div>
+        </div>
+
+        <div class="card feature">
+          <div class="iconwrap" aria-hidden="true">
+            <!-- chart -->
+            <svg viewBox="0 0 24 24"><path d="M4 19h16v2H2V3h2v16zm3-2V10h3v7H7zm5 0V6h3v11h-3zm5 0v-4h3v4h-3z"/></svg>
+          </div>
+          <div>
+            <b>Analytika reakčného času</b>
+            <span>Merateľné výsledky pre každého študenta, sledovanie pokroku.</span>
+          </div>
+        </div>
+
+        <div class="card feature">
+          <div class="iconwrap" aria-hidden="true">
+            <!-- grid -->
+            <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/></svg>
+          </div>
+          <div>
+            <b>Dashboard pre inštruktorov</b>
+            <span>Prehľadný panel na správu študentov a vyhodnocovanie scenárov.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">TÍM</div>
+        <h2 class="h2">Pre koho je tento projekt?</h2>
+      </div>
+
+      <div class="team-wrap">
+        <div class="pill">
+          <div class="miniicon" aria-hidden="true">
+            <!-- code -->
+            <svg viewBox="0 0 24 24"><path d="M8.7 16.6 3.9 12l4.8-4.6L7.3 6 1 12l6.3 6 1.4-1.4zM16.7 18 23 12l-6.3-6-1.4 1.4 4.8 4.6-4.8 4.6 1.4 1.4z"/></svg>
+          </div>
+          <b>Unity / C# vývojári</b>
+        </div>
+
+        <div class="pill">
+          <div class="miniicon" aria-hidden="true">
+            <!-- palette -->
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0 0 20h3a3 3 0 0 0 0-6h-1.2a1.8 1.8 0 1 1 0-3.6H16a6 6 0 0 0 0-12h-4zm-4.5 7A1.5 1.5 0 1 1 9 7.5 1.5 1.5 0 0 1 7.5 9zm3-3A1.5 1.5 0 1 1 12 4.5 1.5 1.5 0 0 1 10.5 6zm6 0A1.5 1.5 0 1 1 18 4.5 1.5 1.5 0 0 1 16.5 6zm3 3A1.5 1.5 0 1 1 21 7.5 1.5 1.5 0 0 1 19.5 9z"/></svg>
+          </div>
+          <b>UI/UX dizajnéri</b>
+        </div>
+
+        <div class="pill">
+          <div class="miniicon" aria-hidden="true">
+            <!-- car -->
+            <svg viewBox="0 0 24 24"><path d="M5 11 6.5 6.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11h1a2 2 0 0 1 2 2v3h-2a2 2 0 0 1-4 0H8a2 2 0 0 1-4 0H2v-3a2 2 0 0 1 2-2h1zm3.4-4 .-0h7.2L16.5 11h-9L8.4 7z"/></svg>
+          </div>
+          <b>Automobiloví nadšenci</b>
+        </div>
+
+        <div class="pill">
+          <div class="miniicon" aria-hidden="true">
+            <!-- cap -->
+            <svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zm0 14L4 13v4l8 4 8-4v-4l-8 4z"/></svg>
+          </div>
+          <b>Študenti s túžbou po reálnom dopade</b>
+        </div>
+
+        <div class="pill">
+          <div class="miniicon" aria-hidden="true">
+            <!-- megaphone -->
+            <svg viewBox="0 0 24 24"><path d="M3 11v2a2 2 0 0 0 2 2h1l2 4h3l-2-4h3l7 3V6l-7 3H5a2 2 0 0 0-2 2zm15-1.2 3-1.3v7l-3-1.3V9.8z"/></svg>
+          </div>
+          <b>Marketing &amp; business ľudia</b>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ====== KTO SOM (sekcia) ====== -->
+<section class="who" id="who">
+  <div class="who__container">
+    <div class="who__kicker">KTO SOM</div>
+
+    <div class="who__avatar" aria-hidden="true">
+      <!-- user icon -->
+      <svg viewBox="0 0 24 24" class="who__icon">
+        <path
+          d="M12 12c2.76 0 5-2.24 5-5S14.76 2 12 2 7 4.24 7 7s2.24 5 5 5zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"
+        />
+      </svg>
+    </div>
+
+    <h2 class="who__name">Tvoje Meno</h2>
+    <div class="who__role">Zakladateľ projektu</div>
+
+    <p class="who__text">
+      Som študent s vášňou pre technológie a bezpečnosť na cestách. Tento projekt som začal,
+      pretože verím, že simulácia krízových situácií môže zachrániť životy. Chcem spojiť ľudí,
+      ktorí zdieľajú rovnakú víziu — urobiť výučbu v autoškolách realistickejšou a bezpečnejšou.
+    </p>
+  </div>
+</section>
+
+<style>
+  :root{
+    --who-text:#0b0b12;
+    --who-muted: rgba(17,24,39,.60);
+    --who-accent:#ec4899;          /* ružová */
+    --who-accent2:#6d28d9;         /* fialová (na ikonku) */
+    --who-border: rgba(17,24,39,.10);
+    --who-ring: rgba(109,40,217,.14);
+    --who-bg: #ffffff;
+    --who-bgTint: #faf7ff;
+  }
+
+  .who{
+    background: var(--who-bg);
+    padding: 110px 0 120px;
+  }
+
+  .who__container{
+    width: min(900px, calc(100% - 48px));
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .who__kicker{
+    font-size: 12px;
+    letter-spacing: .18em;
+    font-weight: 800;
+    color: rgba(236,72,153,.9);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .who__avatar{
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 22px;
+    border-radius: 999px;
+    background:
+      radial-gradient(60px 60px at 35% 25%, rgba(255,255,255,.75), transparent 60%),
+      linear-gradient(180deg, var(--who-bgTint), #ffffff);
+    border: 1px solid var(--who-border);
+    box-shadow: 0 14px 34px rgba(17,24,39,.06);
+    display: grid;
+    place-items: center;
+    position: relative;
+  }
+
+  /* jemný "ring" dookola (ako na screenshote) */
+  .who__avatar::after{
+    content:"";
+    position:absolute;
+    inset: -10px;
+    border-radius: 999px;
+    border: 1px solid rgba(17,24,39,.08);
+    background: transparent;
+    pointer-events:none;
+  }
+
+  .who__icon{
+    width: 34px;
+    height: 34px;
+    fill: rgba(109,40,217,.95);
+    opacity: .95;
+  }
+
+  .who__name{
+    margin: 0;
+    font-size: clamp(34px, 4vw, 46px);
+    letter-spacing: -0.03em;
+    font-weight: 900;
+    color: var(--who-text);
+  }
+
+  .who__role{
+    margin-top: 8px;
+    font-weight: 800;
+    color: rgba(236,72,153,.95);
+    font-size: 14px;
+  }
+
+  .who__text{
+    margin: 22px auto 0;
+    max-width: 70ch;
+    color: var(--who-muted);
+    font-size: 15px;
+    line-height: 1.75;
+    font-weight: 550;
+  }
+
+  @media (max-width: 640px){
+    .who{ padding: 80px 0 90px; }
+    .who__avatar{ width: 80px; height: 80px; }
+  }
+</style>
+  
+  <!-- FINAL CTA -->
+  <section class="final" id="join">
+    <div class="container">
+      <h2 class="h2">
+        Chceš byť pri tom, keď sa zmení<br />
+        <span class="grad-word">výučba v autoškolách?</span>
+      </h2>
+      <p class="p">
+        Pridaj sa k tímu a pomôž nám vytvoriť niečo, čo má skutočný dopad.
+      </p>
+      <button class="btn btn-primary" id="openJoin2">Pridať sa k projektu</button>
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Pridať sa k projektu">
+    <div class="modal" role="document">
+      <div class="modalhead">
+        <b>Pridať sa k projektu</b>
+        <button class="btn btn-secondary" id="close">Zavrieť</button>
+      </div>
+      <div class="modalbody">
+        <form class="form" id="form">
+          <label>
+            Meno / prezývka
+            <input name="name" required placeholder="Napíš meno" />
+          </label>
+          <label>
+            Kontakt (email alebo IG)
+            <input name="contact" required placeholder="napr. meno@email.com" />
+          </label>
+          <label>
+            Oblasť
+            <select name="role" required>
+              <option value="" selected disabled>Vyber</option>
+              <option>Unity / C#</option>
+              <option>UI/UX</option>
+              <option>Automotive</option>
+              <option>Marketing / business</option>
+              <option>Iné</option>
+            </select>
+          </label>
+          <label>
+            Správa
+            <textarea name="msg" required placeholder="2–3 vety: čo vieš a čím chceš pomôcť"></textarea>
+          </label>
+          <div class="actions">
+            <button class="btn btn-secondary" type="button" id="copy">Skopírovať text</button>
+            <button class="btn btn-primary" type="submit">Hotovo</button>
+          </div>
+        </form>
+        <div style="margin-top:10px;color:rgba(17,24,39,.55);font-weight:600;font-size:13px;line-height:1.5">
+          Pozn.: statická verzia – po odoslaní sa správa skopíruje do schránky.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const overlay = document.getElementById("overlay");
+    const open1 = document.getElementById("openJoin1");
+    const open2 = document.getElementById("openJoin2");
+    const close = document.getElementById("close");
+    const form = document.getElementById("form");
+    const copyBtn = document.getElementById("copy");
+
+    function openModal(){
+      overlay.style.display = "grid";
+      setTimeout(() => overlay.querySelector("input,select,textarea,button")?.focus(), 0);
+    }
+    function closeModal(){ overlay.style.display = "none"; }
+
+    open1.addEventListener("click", openModal);
+    open2.addEventListener("click", openModal);
+    close.addEventListener("click", closeModal);
+    overlay.addEventListener("click", (e) => { if(e.target === overlay) closeModal(); });
+    document.addEventListener("keydown", (e)=>{ if(e.key==="Escape" && overlay.style.display==="grid") closeModal(); });
+
+    function buildText(fd){
+      return [
+        "Ahoj, chcem sa pridať k projektu Simulátor krízových situácií pre autoškoly.",
+        "",
+        "Meno: " + fd.get("name"),
+        "Kontakt: " + fd.get("contact"),
+        "Oblasť: " + fd.get("role"),
+        "",
+        "Správa:",
+        fd.get("msg")
+      ].join("\n");
+    }
+
+    async function copyToClipboard(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        return true;
+      }catch{
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand("copy");
+        document.body.removeChild(ta);
+        return ok;
+      }
+    }
+
+    copyBtn.addEventListener("click", async ()=>{
+      const fd = new FormData(form);
+      if(!fd.get("name") || !fd.get("contact") || !fd.get("role") || !fd.get("msg")){
+        alert("Vyplň prosím všetky polia.");
+        return;
+      }
+      const ok = await copyToClipboard(buildText(fd));
+      alert(ok ? "Skopírované." : "Nepodarilo sa skopírovať.");
+    });
+
+    form.addEventListener("submit", async (e)=>{
+      e.preventDefault();
+      const fd = new FormData(form);
+      const ok = await copyToClipboard(buildText(fd));
+      if(ok){
+        alert("Hotovo — správa je v schránke.");
+        form.reset();
+        closeModal();
+      }else{
+        alert("Nepodarilo sa skopírovať.");
+      }
+    });
+  </script>
+</body>
+</html>
