@@ -93,7 +93,7 @@
       font-weight: 900;
     }
     .hero-p{
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto 30px;
       color: rgba(17,24,39,.60);
       font-size: 18px;
@@ -154,7 +154,7 @@
     }
     .p{
       margin: 0 auto;
-      max-width: 820px;
+      max-width: 860px;
       color: rgba(17,24,39,.60);
       font-size: 16px;
       line-height: 1.7;
@@ -204,17 +204,6 @@
       align-items:flex-start;
       padding: 22px;
     }
-    .iconwrap{
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      background: linear-gradient(180deg, rgba(109,40,217,.95), rgba(236,72,153,.90));
-      display:grid;
-      place-items:center;
-      flex: 0 0 auto;
-      box-shadow: 0 10px 22px rgba(109,40,217,.14);
-    }
-    .iconwrap svg{ width: 22px; height: 22px; fill:#fff; opacity: .95; }
     .feature b{
       display:block;
       font-size: 16px;
@@ -282,7 +271,7 @@
     }
     .final .p{
       max-width: 760px;
-      margin-bottom: 34px;
+      margin-bottom: 20px;
     }
 
     /* ---------- modal (simple) ---------- */
@@ -346,7 +335,6 @@
       margin-top: 6px;
     }
 
-    /* ---------- responsive ---------- */
     @media (max-width: 920px){
       .grid-3{ grid-template-columns: 1fr; }
       .grid-2x2{ grid-template-columns: 1fr; }
@@ -361,7 +349,7 @@
   <header class="hero" id="top">
     <div class="container">
       <div class="hero-inner">
-        <div class="eyebrow">SIMULÁTOR KRÍZOVÝCH SITUÁCIÍ</div>
+        <div class="eyebrow">SIMULÁTOR KRÍZOVÝCH SITUÁCIÍ PRE AUTOŠKOLY</div>
 
         <h1 class="h1">
           Mladí vodiči nie sú<br />
@@ -370,13 +358,14 @@
         </h1>
 
         <p class="hero-p">
-          Budujeme simulátor, ktorý to zmení. Realistický systém simulácie krízových situácií pre
-          autoškoly — od šmyku po núdzové brzdenie.
+          Projekt zameraný na bezpečný tréning situácií, ktoré sa v bežnej výučbe autoškôl
+          nedajú realisticky nacvičiť. Od šmyku a náhlej prekážky až po reakčný čas,
+          brzdnú dráhu a dôsledky nepozornosti za volantom.
         </p>
 
         <div class="cta-row">
-          <button class="btn btn-primary" id="openJoin1">Chcem byť súčasťou projektu</button>
-          <a class="btn btn-secondary" href="#problem">Zisti viac</a>
+          <!-- HERO<button class="btn btn-primary" id="openJoin1">Chcem byť súčasťou projektu</button>
+          <a class="btn btn-secondary" href="#problem">Zisti viac</a>-->
         </div>
       </div>
     </div>
@@ -387,26 +376,37 @@
     <div class="container">
       <div class="section-head">
         <div class="kicker">PROBLÉM</div>
-        <h2 class="h2">Autoškoly neučia zvládať krízy</h2>
+        <h2 class="h2">Autoškoly naučia šoférovať, ale nenaučia zvládnuť krízové situácie</h2>
         <p class="p">
-          Výučba v autoškolách sa zameriava na teóriu a základnú jazdu. Ale čo šmyk na mokrej vozovke?
-          Reakcia na náhlu prekážku? Brzdná dráha pri vysokej rýchlosti? Na tieto situácie sa študenti
-          takmer vôbec nepripravujú — a práve tam dochádza k najvážnejším nehodám.
+          Autoškoly poskytujú základné teoretické a praktické zručnosti, no mladí vodiči sa často
+          prvýkrát stretávajú s rizikovou situáciou až v reálnej premávke. Šmyk na mokrej ceste,
+          náhla prekážka, neprispôsobená rýchlosť či rozptýlenie vodiča môžu viesť k chybám,
+          na ktoré nie sú pripravení. Práve nedostatok praktického tréningu je pri mladých vodičoch
+          jedným z hlavných problémov.
         </p>
       </div>
 
       <div class="grid-3">
         <div class="card">
-          <h3>Šmyk &amp; aquaplaning</h3>
-          <p>Žiadny bezpečný tréning na zvládanie straty kontroly.</p>
+          <h3>Šmyk &amp; strata kontroly</h3>
+          <p>
+            Mladí vodiči sa v autoškole neučia, čo robiť pri pretáčavom alebo nedotáčavom šmyku,
+            hoci ide o jednu z najrizikovejších situácií.
+          </p>
         </div>
         <div class="card">
           <h3>Reakčný čas</h3>
-          <p>Študenti nepoznajú svoju reálnu reakčnú dobu.</p>
+          <p>
+            Pri náhlej prekážke rozhodujú sekundy. Bez tréningu vodič nevie správne reagovať
+            a často koná neskoro alebo nesprávne.
+          </p>
         </div>
         <div class="card">
-          <h3>Brzdná dráha</h3>
-          <p>Chýba praktická skúsenosť s núdzovým brzdením.</p>
+          <h3>Brzdná dráha a rýchlosť</h3>
+          <p>
+            Aj malé prekročenie rýchlosti výrazne predlžuje brzdnú dráhu. Pri 60 km/h je brzdná dráha
+            približne o 44 % dlhšia ako pri 50 km/h.
+          </p>
         </div>
       </div>
     </div>
@@ -417,52 +417,158 @@
     <div class="container">
       <div class="section-head">
         <div class="kicker">NAŠE RIEŠENIE</div>
-        <h2 class="h2">Simulátor s reálnou fyzikou a merateľnými výsledkami</h2>
+        <h2 class="h2">Simulátor s reálnou fyzikou a okamžitou spätnou väzbou</h2>
+        <p class="p">
+          Simulátor nemá nahradiť reálnu jazdu v premávke. Jeho cieľom je doplniť výučbu
+          o situácie, ktoré nie je možné bezpečne trénovať na ceste. Pointou nie je trestať,
+          ale učiť, opakovať a budovať správne návyky vodiča.
+        </p>
       </div>
 
       <div class="grid-2x2">
         <div class="card feature">
-          <div class="iconwrap" aria-hidden="true">
-            <!-- speedometer -->
-            <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9c0 3.2 1.7 6 4.2 7.6.5.3 1.1.1 1.3-.4l.1-.2c.2-.4.1-.9-.3-1.2A6.98 6.98 0 0 1 5 12a7 7 0 1 1 14 0c0 2.2-1 4.2-2.6 5.5-.4.3-.5.8-.3 1.2l.1.2c.2.5.8.7 1.3.4A9 9 0 0 0 12 3zm.7 5.3-3.7 5.9c-.4.6 0 1.4.8 1.5l6.9.7c.8.1 1.2-1 .6-1.6l-3.9-3.6a.9.9 0 0 1-.2-1.1l1.2-2.2c.3-.6-.3-1.2-.9-.8z"/></svg>
-          </div>
+          🚗
           <div>
             <b>Realistická fyzika vozidla</b>
-            <span>Simulácia založená na skutočnom správaní áut v kritických situáciách.</span>
+            <span>
+              Simulácia správania auta je postavená na nástroji
+              <a href="https://vehiclephysics.com/" target="_blank"><u>Vehicle Physics Pro</u></a>,
+              ktorý umožňuje realisticky modelovať jazdné situácie.
+            </span>
           </div>
         </div>
 
         <div class="card feature">
-          <div class="iconwrap" aria-hidden="true">
-            <!-- hazard -->
-            <svg viewBox="0 0 24 24"><path d="M12 2 1 21h22L12 2zm0 5.8 6.2 11.2H5.8L12 7.8zm-1 3.2v4h2v-4h-2zm0 5.5v2h2v-2h-2z"/></svg>
-          </div>
+          🚨
           <div>
             <b>Krízové scenáre</b>
-            <span>Od šmyku cez zlyhanie bŕzd po náhlu prekážku na ceste.</span>
+            <span>
+              Šmyk, náhla prekážka na vozovke, nepozornosť vodiča, brzdná dráha alebo dôsledky
+              porušovania zákona v bezpečnom virtuálnom prostredí.
+            </span>
           </div>
         </div>
 
         <div class="card feature">
-          <div class="iconwrap" aria-hidden="true">
-            <!-- chart -->
-            <svg viewBox="0 0 24 24"><path d="M4 19h16v2H2V3h2v16zm3-2V10h3v7H7zm5 0V6h3v11h-3zm5 0v-4h3v4h-3z"/></svg>
-          </div>
+          📈
           <div>
-            <b>Analytika reakčného času</b>
-            <span>Merateľné výsledky pre každého študenta, sledovanie pokroku.</span>
+            <b>Tréning + vyhodnotenie</b>
+            <span>
+              Simulátor sleduje reakcie vodiča, jeho chyby aj správne rozhodnutia a poskytuje
+              okamžitú spätnú väzbu založenú na fyzikálnych údajoch vozidla.
+            </span>
           </div>
         </div>
 
         <div class="card feature">
-          <div class="iconwrap" aria-hidden="true">
-            <!-- grid -->
-            <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/></svg>
-          </div>
+          🧠
           <div>
-            <b>Dashboard pre inštruktorov</b>
-            <span>Prehľadný panel na správu študentov a vyhodnocovanie scenárov.</span>
+            <b>Edukácia bez rizika</b>
+            <span>
+              Nebezpečné situácie je možné bezpečne opakovať viackrát, analyzovať ich a naučiť sa
+              správne reakcie bez ohrozenia zdravia alebo majetku.
+            </span>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRUCTURE -->
+  <section id="structure">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">ŠTRUKTÚRA SIMULÁTORA</div>
+        <h2 class="h2">Od úvodu až po finálny test</h2>
+        <p class="p">
+          Simulátor je navrhnutý ako postupný vzdelávací systém. Používateľ sa najprv oboznámi
+          s prostredím, následne absolvuje vstupný test, jednotlivé lekcie a napokon finálnu jazdu,
+          ktorá preverí jeho progres.
+        </p>
+      </div>
+
+      <div class="grid-2x2">
+        <div class="card feature">
+          1️⃣
+          <div>
+            <b>Úvodný modul a vstupný test</b>
+            <span>
+              Oboznámenie používateľa so simulátorom a zistenie jeho počiatočných schopností
+              pre neskoršie porovnanie.
+            </span>
+          </div>
+        </div>
+
+        <div class="card feature">
+          2️⃣
+          <div>
+            <b>Vysvetlenie princípu situácie</b>
+            <span>
+              Každá lekcia obsahuje krátke vysvetlenie alebo vizualizáciu, napríklad ako vzniká šmyk
+              alebo ako alkohol znižuje schopnosť reagovať.
+            </span>
+          </div>
+        </div>
+
+        <div class="card feature">
+          3️⃣
+          <div>
+            <b>Tréning s opakovaním</b>
+            <span>
+              Používateľ si môže situáciu opakovane nacvičovať s cieľom osvojiť si správne reakcie
+              a vytvoriť si lepšie vodičské návyky.
+            </span>
+          </div>
+        </div>
+
+        <div class="card feature">
+          4️⃣
+          <div>
+            <b>Simulácia a finálny test</b>
+            <span>
+              Výsledkom nie je známka, ale profil vodiča s odporúčaniami. Záverečný test kombinuje
+              viacero situácií do jednej jazdy.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROTOTYPE -->
+  <section id="prototype" style="background: radial-gradient(900px 420px at 50% 0%, rgba(139,92,246,.08), transparent 60%), #fff;">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">PROTOTYP</div>
+        <h2 class="h2">Aktuálne vytvorený prototyp v Unity Engine</h2>
+        <p class="p">
+          Prototyp bol vytvorený v prostredí Unity Engine a zatiaľ obsahuje základné lekcie,
+          ktoré tvoria jadro celého projektu. Cieľom je postupne rozširovať simulátor o ďalšie
+          realistické scenáre z reálnej premávky.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Lekcia šmyku</h3>
+          <p>
+            Rozdelená na pretáčavý a nedotáčavý šmyk. Simulátor vyhodnocuje rýchlosť, smer pohybu,
+            rotáciu vozidla a reakciu vodiča.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Reakčný čas</h3>
+          <p>
+            Pred vozidlom sa objaví náhla prekážka a systém meria čas od jej zobrazenia
+            po začiatok brzdenia.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Brzdná dráha</h3>
+          <p>
+            Vodič vidí, ako sa s rastúcou rýchlosťou predlžuje brzdná dráha a prečo môže aj malé
+            prekročenie rýchlosti viesť k vážnym následkom.
+          </p>
         </div>
       </div>
     </div>
@@ -479,7 +585,6 @@
       <div class="team-wrap">
         <div class="pill">
           <div class="miniicon" aria-hidden="true">
-            <!-- code -->
             <svg viewBox="0 0 24 24"><path d="M8.7 16.6 3.9 12l4.8-4.6L7.3 6 1 12l6.3 6 1.4-1.4zM16.7 18 23 12l-6.3-6-1.4 1.4 4.8 4.6-4.8 4.6 1.4 1.4z"/></svg>
           </div>
           <b>Unity / C# vývojári</b>
@@ -487,7 +592,6 @@
 
         <div class="pill">
           <div class="miniicon" aria-hidden="true">
-            <!-- palette -->
             <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0 0 20h3a3 3 0 0 0 0-6h-1.2a1.8 1.8 0 1 1 0-3.6H16a6 6 0 0 0 0-12h-4zm-4.5 7A1.5 1.5 0 1 1 9 7.5 1.5 1.5 0 0 1 7.5 9zm3-3A1.5 1.5 0 1 1 12 4.5 1.5 1.5 0 0 1 10.5 6zm6 0A1.5 1.5 0 1 1 18 4.5 1.5 1.5 0 0 1 16.5 6zm3 3A1.5 1.5 0 1 1 21 7.5 1.5 1.5 0 0 1 19.5 9z"/></svg>
           </div>
           <b>UI/UX dizajnéri</b>
@@ -495,7 +599,6 @@
 
         <div class="pill">
           <div class="miniicon" aria-hidden="true">
-            <!-- car -->
             <svg viewBox="0 0 24 24"><path d="M5 11 6.5 6.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11h1a2 2 0 0 1 2 2v3h-2a2 2 0 0 1-4 0H8a2 2 0 0 1-4 0H2v-3a2 2 0 0 1 2-2h1zm3.4-4 .-0h7.2L16.5 11h-9L8.4 7z"/></svg>
           </div>
           <b>Automobiloví nadšenci</b>
@@ -503,154 +606,149 @@
 
         <div class="pill">
           <div class="miniicon" aria-hidden="true">
-            <!-- cap -->
             <svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zm0 14L4 13v4l8 4 8-4v-4l-8 4z"/></svg>
           </div>
-          <b>Študenti s túžbou po reálnom dopade</b>
-        </div>
-
-        <div class="pill">
-          <div class="miniicon" aria-hidden="true">
-            <!-- megaphone -->
-            <svg viewBox="0 0 24 24"><path d="M3 11v2a2 2 0 0 0 2 2h1l2 4h3l-2-4h3l7 3V6l-7 3H5a2 2 0 0 0-2 2zm15-1.2 3-1.3v7l-3-1.3V9.8z"/></svg>
-          </div>
-          <b>Marketing &amp; business ľudia</b>
+          <b>Študenti</b>
         </div>
       </div>
     </div>
   </section>
 
-<!-- ====== KTO SOM (sekcia) ====== -->
-<section class="who" id="who">
-  <div class="who__container">
-    <div class="who__kicker">KTO SOM</div>
+  <!-- ====== KTO SOM (sekcia) ====== -->
+  <section class="who" id="who">
+    <div class="who__container">
+      <div class="who__kicker">KTO SOM</div>
 
-    <div class="who__avatar" aria-hidden="true">
-      <!-- user icon -->
-      <svg viewBox="0 0 24 24" class="who__icon">
-        <path
-          d="M12 12c2.76 0 5-2.24 5-5S14.76 2 12 2 7 4.24 7 7s2.24 5 5 5zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"
-        />
-      </svg>
+      <div class="who__avatar" aria-hidden="true">
+        <svg viewBox="0 0 24 24" class="who__icon">
+          <path
+            d="M12 12c2.76 0 5-2.24 5-5S14.76 2 12 2 7 4.24 7 7s2.24 5 5 5zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"
+          />
+        </svg>
+      </div>
+
+      <h2 class="who__name">Samuel Žatko</h2>
+      <div class="who__role">Zakladateľ projektu</div>
+
+      <p class="who__text">
+        Som gymnazista, maturant a nadšenec technológií. K tejto myšlienke ma priviedla
+        reálna skúsenosť s dopravnou nehodou mojej kamarátky, ktorá po šmyku na mokrej ceste
+        povedala, že v autoškole ju nikto nenaučil, ako v takej situácii reagovať. Práve táto veta
+        sa stala impulzom pre vznik projektu. Mojím cieľom je vytvoriť simulátor, ktorý pomôže
+        mladým vodičom lepšie zvládať rizikové situácie a budovať zodpovednejší prístup k jazde.
+      </p>
     </div>
+  </section>
 
-    <h2 class="who__name">Tvoje Meno</h2>
-    <div class="who__role">Zakladateľ projektu</div>
+  <style>
+    :root{
+      --who-text:#0b0b12;
+      --who-muted: rgba(17,24,39,.60);
+      --who-accent:#ec4899;
+      --who-accent2:#6d28d9;
+      --who-border: rgba(17,24,39,.10);
+      --who-ring: rgba(109,40,217,.14);
+      --who-bg: #ffffff;
+      --who-bgTint: #faf7ff;
+    }
 
-    <p class="who__text">
-      Som študent s vášňou pre technológie a bezpečnosť na cestách. Tento projekt som začal,
-      pretože verím, že simulácia krízových situácií môže zachrániť životy. Chcem spojiť ľudí,
-      ktorí zdieľajú rovnakú víziu — urobiť výučbu v autoškolách realistickejšou a bezpečnejšou.
-    </p>
-  </div>
-</section>
+    .who{
+      background: var(--who-bg);
+      padding: 110px 0 120px;
+    }
 
-<style>
-  :root{
-    --who-text:#0b0b12;
-    --who-muted: rgba(17,24,39,.60);
-    --who-accent:#ec4899;          /* ružová */
-    --who-accent2:#6d28d9;         /* fialová (na ikonku) */
-    --who-border: rgba(17,24,39,.10);
-    --who-ring: rgba(109,40,217,.14);
-    --who-bg: #ffffff;
-    --who-bgTint: #faf7ff;
-  }
+    .who__container{
+      width: min(900px, calc(100% - 48px));
+      margin: 0 auto;
+      text-align: center;
+    }
 
-  .who{
-    background: var(--who-bg);
-    padding: 110px 0 120px;
-  }
+    .who__kicker{
+      font-size: 12px;
+      letter-spacing: .18em;
+      font-weight: 800;
+      color: rgba(236,72,153,.9);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
 
-  .who__container{
-    width: min(900px, calc(100% - 48px));
-    margin: 0 auto;
-    text-align: center;
-  }
+    .who__avatar{
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 22px;
+      border-radius: 999px;
+      background:
+        radial-gradient(60px 60px at 35% 25%, rgba(255,255,255,.75), transparent 60%),
+        linear-gradient(180deg, var(--who-bgTint), #ffffff);
+      border: 1px solid var(--who-border);
+      box-shadow: 0 14px 34px rgba(17,24,39,.06);
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
 
-  .who__kicker{
-    font-size: 12px;
-    letter-spacing: .18em;
-    font-weight: 800;
-    color: rgba(236,72,153,.9);
-    text-transform: uppercase;
-    margin-bottom: 18px;
-  }
+    .who__avatar::after{
+      content:"";
+      position:absolute;
+      inset: -10px;
+      border-radius: 999px;
+      border: 1px solid rgba(17,24,39,.08);
+      background: transparent;
+      pointer-events:none;
+    }
 
-  .who__avatar{
-    width: 88px;
-    height: 88px;
-    margin: 0 auto 22px;
-    border-radius: 999px;
-    background:
-      radial-gradient(60px 60px at 35% 25%, rgba(255,255,255,.75), transparent 60%),
-      linear-gradient(180deg, var(--who-bgTint), #ffffff);
-    border: 1px solid var(--who-border);
-    box-shadow: 0 14px 34px rgba(17,24,39,.06);
-    display: grid;
-    place-items: center;
-    position: relative;
-  }
+    .who__icon{
+      width: 34px;
+      height: 34px;
+      fill: rgba(109,40,217,.95);
+      opacity: .95;
+    }
 
-  /* jemný "ring" dookola (ako na screenshote) */
-  .who__avatar::after{
-    content:"";
-    position:absolute;
-    inset: -10px;
-    border-radius: 999px;
-    border: 1px solid rgba(17,24,39,.08);
-    background: transparent;
-    pointer-events:none;
-  }
+    .who__name{
+      margin: 0;
+      font-size: clamp(34px, 4vw, 46px);
+      letter-spacing: -0.03em;
+      font-weight: 900;
+      color: var(--who-text);
+    }
 
-  .who__icon{
-    width: 34px;
-    height: 34px;
-    fill: rgba(109,40,217,.95);
-    opacity: .95;
-  }
+    .who__role{
+      margin-top: 8px;
+      font-weight: 800;
+      color: rgba(236,72,153,.95);
+      font-size: 14px;
+    }
 
-  .who__name{
-    margin: 0;
-    font-size: clamp(34px, 4vw, 46px);
-    letter-spacing: -0.03em;
-    font-weight: 900;
-    color: var(--who-text);
-  }
+    .who__text{
+      margin: 22px auto 0;
+      max-width: 70ch;
+      color: var(--who-muted);
+      font-size: 15px;
+      line-height: 1.75;
+      font-weight: 550;
+    }
 
-  .who__role{
-    margin-top: 8px;
-    font-weight: 800;
-    color: rgba(236,72,153,.95);
-    font-size: 14px;
-  }
+    @media (max-width: 640px){
+      .who{ padding: 80px 0 90px; }
+      .who__avatar{ width: 80px; height: 80px; }
+    }
+  </style>
 
-  .who__text{
-    margin: 22px auto 0;
-    max-width: 70ch;
-    color: var(--who-muted);
-    font-size: 15px;
-    line-height: 1.75;
-    font-weight: 550;
-  }
-
-  @media (max-width: 640px){
-    .who{ padding: 80px 0 90px; }
-    .who__avatar{ width: 80px; height: 80px; }
-  }
-</style>
-  
   <!-- FINAL CTA -->
   <section class="final" id="join">
     <div class="container">
       <h2 class="h2">
-        Chceš byť pri tom, keď sa zmení<br />
-        <span class="grad-word">výučba v autoškolách?</span>
+        Chceš byť súčasťou tohoto<br />
+        <span class="grad-word">projektu?</span>
       </h2>
       <p class="p">
-        Pridaj sa k tímu a pomôž nám vytvoriť niečo, čo má skutočný dopad.
+        Hľadám ľudí, ktorí chcú pomôcť budovať realistický simulátor s reálnym dopadom
+        na bezpečnosť mladých vodičov.
       </p>
-      <button class="btn btn-primary" id="openJoin2">Pridať sa k projektu</button>
+      <p class="p">
+        Napíš mi<br />
+        <span class="grad-word">samuelzatko07@gmail.com</span>
+      </p>
     </div>
   </section>
 
@@ -712,8 +810,8 @@
     }
     function closeModal(){ overlay.style.display = "none"; }
 
-    open1.addEventListener("click", openModal);
-    open2.addEventListener("click", openModal);
+    if (open1) open1.addEventListener("click", openModal);
+    if (open2) open2.addEventListener("click", openModal);
     close.addEventListener("click", closeModal);
     overlay.addEventListener("click", (e) => { if(e.target === overlay) closeModal(); });
     document.addEventListener("keydown", (e)=>{ if(e.key==="Escape" && overlay.style.display==="grid") closeModal(); });
